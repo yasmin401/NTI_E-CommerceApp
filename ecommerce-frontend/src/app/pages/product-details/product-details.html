@@ -1,0 +1,9 @@
+<div class="product-details-container" *ngIf="!isLoading && product">
+    <h2>{{ product.name }}</h2>
+    <img [src]="product.image" alt="{{ product.name }}" />
+    <p>{{ product.description }}</p>
+    <p class="price">EGP {{ product.price }}</p>
+</div>
+
+<div *ngIf="isLoading">Loading...</div>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>

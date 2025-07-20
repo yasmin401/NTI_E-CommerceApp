@@ -1,0 +1,40 @@
+<div class="manage-container">
+    <h2>Manage Products</h2>
+
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <h3>Add New Product</h3>
+    <form (ngSubmit)="addProduct()" #productForm="ngForm" class="form-inline">
+        <input type="text" placeholder="Name" [(ngModel)]="newProduct.name" name="name" required />
+        <input type="number" placeholder="Price" [(ngModel)]="newProduct.price" name="price" required />
+        <input type="number" placeholder="Stock" [(ngModel)]="newProduct.stock" name="stock" required />
+        <input type="text" placeholder="Image URL" [(ngModel)]="newProduct.image" name="image" required />
+
+        <button type="submit" [disabled]="!productForm.valid">Add Product</button>
+    </form>
+
+    <table *ngIf="products.length > 0; else noProducts">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price (EGP)</th>
+                <th>Stock</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <button (click)="deleteProduct(product._id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #noProducts>
+        <p>No products available.</p>
+    </ng-template>
+</div>

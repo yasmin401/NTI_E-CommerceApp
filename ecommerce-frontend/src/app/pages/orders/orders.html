@@ -1,0 +1,24 @@
+<div class="orders-container">
+    <h2>Your Orders</h2>
+
+    <div *ngIf="isLoading">Loading orders...</div>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <div *ngIf="orders.length > 0; else noOrders">
+        <div class="order" *ngFor="let order of orders">
+            <h4>Order ID: {{ order._id }}</h4>
+            <p>Placed at: {{ order.createdAt | date:'short' }}</p>
+            <ul>
+                <li *ngFor="let item of order.items">
+                    {{ item.product.name }} (x{{ item.quantity }}) - EGP {{ item.product.price }}
+                </li>
+            </ul>
+            <p>Total: EGP {{ order.total }}</p>
+            <hr>
+        </div>
+    </div>
+
+    <ng-template #noOrders>
+        <p>You have no orders yet.</p>
+    </ng-template>
+</div>
