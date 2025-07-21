@@ -1,7 +1,6 @@
 const Order = require("../models/order.model");
 const Product = require("../models/product.model");
 
-// إنشاء طلب جديد
 exports.createOrder = async (req, res) => {
     try {
         const { items, shippingAddress, paymentMethod } = req.body;
@@ -26,7 +25,6 @@ exports.createOrder = async (req, res) => {
 
             totalPrice += product.price * item.quantity;
 
-            // خصم من المخزون
             product.countInStock -= item.quantity;
             await product.save();
         }
