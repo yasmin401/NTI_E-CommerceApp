@@ -2,7 +2,6 @@
     background-color: #333;
     color: white;
     padding: 20px 20px;
-    /* بدل 12px خليه 20px مثلاً */
     display: flex;
     justify-content: space-between;
     align-items: center;
